@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventory - Simple</title>
+    <link rel="stylesheet" href="styles/simple.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>INVENTORY</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <section id="dashboard-view" class="view active">
+                <div class="menu-grid">
+                    <button class="menu-card" onclick="showView('items-view')">
+                        <div class="menu-icon">📦</div>
+                        <div class="menu-text">Items</div>
+                    </button>
+                    
+                    <button class="menu-card" onclick="showView('add-item-view')">
+                        <div class="menu-icon">➕</div>
+                        <div class="menu-text">Tambah Item</div>
+                    </button>
+                    
+                    <button class="menu-card" onclick="showView('sales-view')">
+                        <div class="menu-icon">💰</div>
+                        <div class="menu-text">Penjualan</div>
+                    </button>
+                    
+                    <button class="menu-card" onclick="showView('reports-view')">
+                        <div class="menu-icon">📊</div>
+                        <div class="menu-text">Laporan</div>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Items List View -->
+            <section id="items-view" class="view">
+                <div class="content-header">
+                    <button class="back-btn" onclick="showView('dashboard-view')">←</button>
+                    <h2>Daftar Items</h2>
+                    <button class="add-btn" onclick="showView('add-item-view')">+</button>
+                </div>
+
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" id="searchItems" placeholder="Cari items...">
+                    </div>
+                    <div class="filter-chips">
+                        <button class="chip active" data-filter="all">Semua</button>
+                        <button class="chip" data-filter="available">Tersedia</button>
+                        <button class="chip" data-filter="low">Stok Rendah</button>
+                    </div>
+                </div>
+
+                <div class="items-list" id="itemsList">
+                    <!-- Items akan dimuat di sini -->
+                </div>
+            </section>
+
+            <!-- Add Item View -->
+            <section id="add-item-view" class="view">
+                <div class="content-header">
+                    <button class="back-btn" onclick="showView('items-view')">←</button>
+                    <h2>Tambah Item</h2>
+                </div>
+
+                <form id="itemForm" class="item-form">
+                    <div class="form-section">
+                        <h3>Informasi Dasar</h3>
+                        
+                        <div class="form-group">
+                            <label>Nama Item *</label>
+                            <input type="text" id="itemName" required placeholder="Nama produk">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Kode Item</label>
+                                <input type="text" id="itemCode" placeholder="Auto generate">
+                                <button type="button" class="icon-btn" onclick="generateCode()">🎲</button>
+                            </div>
+                            <div class="form-group">
+                                <label>Kategori</label>
+                                <select id="itemCategory">
+                                    <option value="">Pilih kategori</option>
+                                    <option value="makanan">Makanan</option>
+                                    <option value="minuman">Minuman</option>
+                                    <option value="snack">Snack</option>
+                                    <option value="alat">Alat Tulis</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Stok & Harga</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Stok *</label>
+                                <input type="number" id="itemStock" required placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Satuan</label>
+                                <select id="itemUnit">
+                                    <option value="pcs">PCS</option>
+                                    <option value="kg">KG</option>
+                                    <option value="box">BOX</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Harga Beli</label>
+                                <input type="number" id="itemCost" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Harga Jual</label>
+                                <input type="number" id="itemPrice" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Pengaturan</h3>
+                        
+                        <div class="form-group">
+                            <label>Deskripsi</label>
+                            <textarea id="itemDescription" placeholder="Deskripsi produk"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Minimal Stok</label>
+                            <input type="number" id="minStock" placeholder="5">
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Sales View -->
+            <section id="sales-view" class="view">
+                <div class="content-header">
+                    <button class="back-btn" onclick="showView('dashboard-view')">←</button>
+                    <h2>Penjualan</h2>
+                </div>
+
+                <div class="sales-summary">
+                    <div class="summary-card">
+                        <div class="summary-number">Rp 0</div>
+                        <div class="summary-label">Penjualan Hari Ini</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-number">0</div>
+                        <div class="summary-label">Transaksi</div>
+                    </div>
+                </div>
+
+                <div class="sales-actions">
+                    <button class="action-btn primary" onclick="showView('new-sale-view')">
+                        <span class="icon">🛒</span>
+                        <span>Transaksi Baru</span>
+                    </button>
+                    <button class="action-btn">
+                        <span class="icon">📋</span>
+                        <span>Riwayat</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Reports View -->
+            <section id="reports-view" class="view">
+                <div class="content-header">
+                    <button class="back-btn" onclick="showView('dashboard-view')">←</button>
+                    <h2>Laporan</h2>
+                </div>
+
+                <div class="report-options">
+                    <button class="report-btn">
+                        <span class="icon">📊</span>
+                        <span>Laporan Penjualan</span>
+                    </button>
+                    <button class="report-btn">
+                        <span class="icon">📦</span>
+                        <span>Laporan Stok</span>
+                    </button>
+                    <button class="report-btn">
+                        <span class="icon">💰</span>
+                        <span>Laporan Keuangan</span>
+                    </button>
+                    <button class="report-btn">
+                        <span class="icon">📈</span>
+                        <span>Analisis</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="showView('dashboard-view')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+            </button>
+            <button class="nav-item" onclick="showView('items-view')">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">Items</span>
+            </button>
+            <button class="nav-item" onclick="showView('add-item-view')">
+                <span class="nav-icon">➕</span>
+                <span class="nav-text">Tambah</span>
+            </button>
+            <button class="nav-item" onclick="showView('sales-view')">
+                <span class="nav-icon">💰</span>
+                <span class="nav-text">Sales</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Save Button (Fixed) -->
+    <div class="fixed-save-btn" id="saveBtn" style="display: none;">
+        <button onclick="saveItem()">SIMPAN</button>
+    </div>
+
+    <script src="js/simple-app.js"></script>
+</body>
+</html>

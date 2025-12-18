@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Sistem Inventory Simple</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .demo-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .demo-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .demo-features {
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 40px;
+            text-align: center;
+        }
+        
+        .demo-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .demo-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .demo-btn.primary {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+        
+        .demo-btn.secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .device-preview {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .device {
+            background: #333;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .device-screen {
+            background: white;
+            border-radius: 8px;
+            width: 120px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .mobile-frame {
+            background: #333;
+            border-radius: 25px;
+            padding: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-screen {
+            background: white;
+            border-radius: 18px;
+            width: 180px;
+            height: 320px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 0.7rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        @media (max-width: 600px) {
+            .demo-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .demo-title {
+                font-size: 2rem;
+            }
+            
+            .demo-buttons {
+                flex-direction: column;
+            }
+            
+            .demo-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">📱 Sistem Inventory</h1>
+        <p class="demo-subtitle">Simple & Mobile-Friendly</p>
+        
+        <div class="demo-features">
+            <h3>✨ Fitur Utama:</h3>
+            
+            <div class="feature-item">
+                <span class="feature-icon">🏠</span>
+                <div>
+                    <strong>Dashboard Sederhana</strong><br>
+                    Grid 2x2 dengan menu cards yang mudah diakses
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <span class="feature-icon">📦</span>
+                <div>
+                    <strong>Manajemen Items</strong><br>
+                    List view yang clean dengan search dan filter
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <span class="feature-icon">➕</span>
+                <div>
+                    <strong>Form Input Simple</strong><br>
+                    Fokus pada satu hal saja, tidak rumit
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <span class="feature-icon">📱</span>
+                <div>
+                    <strong>Mobile First</strong><br>
+                    Touch-friendly dengan bottom navigation
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <span class="feature-icon">💾</span>
+                <div>
+                    <strong>Data Persistent</strong><br>
+                    Data tersimpan di browser (localStorage)
+                </div>
+            </div>
+        </div>
+        
+        <div class="device-preview">
+            <div class="device">
+                <div class="device-screen">
+                    Desktop View<br>
+                    <small>Full table dengan semua fitur</small>
+                </div>
+            </div>
+            
+            <div class="mobile-frame">
+                <div class="mobile-screen">
+                    Mobile View<br>
+                    Simple cards<br>
+                    Bottom nav<br>
+                    Touch-friendly
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-buttons">
+            <a href="simple.html" class="demo-btn primary" target="_blank">
+                🚀 Buka Aplikasi
+            </a>
+            
+            <a href="simple-README.md" class="demo-btn secondary" target="_blank">
+                📖 Dokumentasi
+            </a>
+        </div>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9rem;">
+            <p><strong>Berdasarkan contoh desain Anda:</strong></p>
+            <p>✅ Dashboard grid sederhana</p>
+            <p>✅ Form input focused & minimal</p>
+            <p>✅ List view yang clean</p>
+            <p>✅ Bottom navigation yang mudah</p>
+            <p>✅ Touch-friendly interface</p>
+        </div>
+    </div>
+</body>
+</html>
